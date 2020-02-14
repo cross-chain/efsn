@@ -1541,7 +1541,7 @@ func (pool *TxPool) validateFsnCallTx(tx *types.Transaction) error {
 	case common.BuyTicketFunc:
 		buyTicketParam := common.BuyTicketParam{}
 		rlp.DecodeBytes(param.Data, &buyTicketParam)
-		if err := buyTicketParam.Check(height, timestamp, 0); err != nil {
+		if err := buyTicketParam.Check(height, currBlockHeader.Time.Uint64()); err != nil {
 			return err
 		}
 
